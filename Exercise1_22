@@ -1,0 +1,16 @@
+(define find-leaf
+  (lambda (leaf-value bintree)
+    (cond
+      ((null? bintree)'())
+      ((leaf? bintree)
+       (if (eq? (cadr bintree)leaf-value) 0 #f))
+      ((number? (find-leaf leaf-value (lson bintree)))(+ 1 (find-leaf leaf-value (lson bintree))))
+      ((number? (find-leaf leaf-value (rson bintree)))(+ 1 (find-leaf leaf-value (rson bintree))))
+      (else #f))))
+
+      
+(define mark-leaves-with-red-depth
+  (lambda (bintree)
+    (if       
+      (leaf? bintree) (build-leaf (find-leaf (cadr bintree) bintree))
+      (build-interior-node (cadr bintree) (mark-leaves-with-red-depth (lson bintree))(mark-leaves-with-red-depth (rson bintree))))))
