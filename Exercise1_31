@@ -1,0 +1,24 @@
+(define build-leaf
+  (lambda (int) (list 'leaf int)))
+
+(define build-interior-node
+  (lambda (symbol left-bintree right-bintree) (list 'interior-node symbol left-bintree right-bintree)))
+
+(define leaf?
+  (lambda (bintree)
+    (if (eq? (car bintree)'leaf)
+        #t
+        #f)))
+
+(define lson
+  (lambda (node)
+    (caddr node)))
+
+(define rson
+  (lambda (node)
+    (cadddr node)))
+
+(define contents-of
+  (lambda (bintree)
+    (if (eq? (car bintree) 'leaf) (cadr bintree)
+        (list (cadr bintree)(lson bintree)(rson bintree)))))
