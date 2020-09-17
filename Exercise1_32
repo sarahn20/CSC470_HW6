@@ -1,0 +1,5 @@
+(define double-tree
+  (lambda (bintree)
+    (if (leaf? bintree)
+        (build-leaf (* (contents-of bintree) 2))
+        (build-interior-node (cadr bintree) (double-tree (lson bintree))(double-tree (rson bintree))))))
